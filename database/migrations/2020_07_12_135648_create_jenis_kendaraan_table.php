@@ -19,6 +19,7 @@ class CreateJenisKendaraanTable extends Migration
             $table->string('name');
             $table->unsignedInteger('tarif');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
