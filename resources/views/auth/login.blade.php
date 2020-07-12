@@ -21,7 +21,7 @@
                     <div class="form-group">
                     <label class="label">Email</label>
                     <div class="input-group">
-                        <input value="{{ old('email') }}" type="email" class="form-control" placeholder="Email">
+                        <input value="{{ old('email') }}" name="email" type="email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="mdi mdi-check-circle-outline @error('email') mdi-close-circle @enderror"></i>
@@ -37,7 +37,7 @@
                     <div class="form-group">
                     <label class="label">Password</label>
                     <div class="input-group">
-                        <input type="password" class="form-control" placeholder="*********">
+                        <input type="password" name="password" class="form-control" placeholder="*********">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
