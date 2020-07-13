@@ -31,7 +31,15 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tarif / Jam</label>
-                            <input required name="tarif" value="{{$kendaraan->tarif}}" type="number" class="form-control">
+                            <input required name="tarif_perjam" value="{{$kendaraan->tarif_perjam}}" type="number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tarif 2 Jam Pertama</label>
+                            <input required name="tarif_awal" value="{{$kendaraan->tarif_awal}}" type="number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tarif Maksimal</label>
+                            <input required name="tarif_max" value="{{$kendaraan->tarif_max}}" type="number" class="form-control">
                         </div>
                     </div>
                     <button type="submit" name="_method" value="put" class="btn btn-primary">Ubah Data</button>
