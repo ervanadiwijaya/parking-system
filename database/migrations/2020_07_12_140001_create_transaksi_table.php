@@ -18,7 +18,7 @@ class CreateTransaksiTable extends Migration
             $table->foreignId('parkir_id')->contrained('parkir');
             $table->time('lama_parkir');
             $table->unsignedInteger('tarif');
-            $table->unsignedInteger('bayar');
+            $table->unsignedInteger('tagihan');
             $table->dateTimeTz('created_at');
         });
     }
