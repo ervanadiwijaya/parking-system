@@ -8,7 +8,7 @@ class Transaksi extends Model
 {
     protected $table = 'transaksi';
     protected $fillable = [
-        'parkir_id', 'lama_parkir', 'tarif', 'bayar', 'created_at'
+        'parkir_id', 'lama_parkir', 'tarif', 'tagihan', 'created_at'
     ];
     public $timestamps = false;
 }
