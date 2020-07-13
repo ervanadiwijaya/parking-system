@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('karyawan', 'HomeController@index');
+Route::resource('karyawan', 'UserController')->except('create', 'edit');
 Route::resource('kendaraan', 'JenisKendaraanConroller')->except('create', 'edit');
 Route::prefix('parkir')->group(function(){
     Route::get('masuk', 'HomeController@index');

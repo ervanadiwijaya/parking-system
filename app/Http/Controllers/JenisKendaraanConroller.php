@@ -37,14 +37,17 @@ class JenisKendaraanConroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'prefix' => 'required|min:2|max:2|unique:jenis_kendaraan',
-            'name' => 'required',
-            'tarif' => 'required'
+            'prefix'        => 'required|min:2|max:2|unique:jenis_kendaraan',
+            'name'          => 'required',
+            'tarif_awal'    => 'required',
+            'tarif_perjam'  => 'required'
         ]);
         JenisKendaraan::create([
-            'prefix' => request('prefix'),
-            'name' => request('name'),
-            'tarif' => request('tarif')
+            'prefix'        => request('prefix'),
+            'name'          => request('name'),
+            'tarif_awal'    => request('tarif_awal'),
+            'tarif_perjam'  => request('tarif_perjam'),
+            'tarif_max'     => request('tarif_max')
         ]);
 
         return back()->with('message', 'jenis kendaraan ditambah!');
@@ -83,17 +86,20 @@ class JenisKendaraanConroller extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'prefix' => 'required|min:2|max:2',
-            'name' => 'required',
-            'tarif' => 'required'
+            'prefix'        => 'required|min:2|max:2|unique:jenis_kendaraan',
+            'name'          => 'required',
+            'tarif_awal'    => 'required',
+            'tarif_perjam'  => 'required'
         ]);
 
         $jeniskendaraan = JenisKendaraan::find($id);
 
         $jeniskendaraan->update([
-            'prefix'=>request('prefix'),
-            'name'=>request('name'),
-            'tarif'=>request('tarif')
+            'prefix'        =>request('prefix'),
+            'name'          =>request('name'),
+            'tarif_awal'    => request('tarif_awal'),
+            'tarif_perjam'  => request('tarif_perjam'),
+            'tarif_max'     => request('tarif_max')
         ]);
 
         return back()->with('message', 'jenis kendaraan diperbarui!');
