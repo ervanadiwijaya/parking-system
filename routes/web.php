@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('karyawan', 'HomeController@index')->name('home');
+Route::get('kendaraan', 'HomeController@index')->name('home');
+Route::prefix('parkir')->group(function(){
+    Route::get('masuk', 'HomeController@index')->name('home');
+    Route::get('keluar', 'HomeController@index')->name('home');
 });
-
+Route::get('laporan', 'HomeController@index')->name('home');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

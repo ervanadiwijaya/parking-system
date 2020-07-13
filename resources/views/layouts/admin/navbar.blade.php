@@ -11,9 +11,6 @@
         <div class="navbar-menu-wrapper d-flex align-items-center">
           <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
             <li class="nav-item">
-              <a href="/schedule" class="nav-link">Schedule</a>
-            </li>
-            <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="mdi mdi-elevation-rise"></i>Reports</a>
             </li>

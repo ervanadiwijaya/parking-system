@@ -11,7 +11,8 @@
                 <div class="text-wrapper">
                     <p style="text-transform: capitalize;" class="profile-name">{{{ Auth::user()->name }}}</p>
                     <div>
-                        <small class="designation text-muted">{{Auth::user()->role[0]->name}}</small>
+                        <small class="designation text-muted">Admin</small>
+                        {{-- <small class="designation text-muted">{{Auth::user()->role[0]->name}}</small> --}}
                         <span class="status-indicator online"></span>
                     </div>
                 </div>
@@ -25,76 +26,34 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/schedule">
-                <i class="menu-icon mdi mdi-calendar-clock"></i>
-                <span class="menu-title">Schedule</span>
+            <a class="nav-link" href="/karyawan">
+                <i class="menu-icon mdi mdi-badge-account-horizontal-outline"></i>
+                <span class="menu-title">Karyawan</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/pelajar/invoice">
-                <i class="menu-icon mdi mdi-library-books"></i>
-                <span class="menu-title">Invoice</span>
+            <a class="nav-link" href="/kendaraan">
+                <i class="menu-icon mdi mdi-car-child-seat"></i>
+                <span class="menu-title">Jenis Kendaraan</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/voucher">
+            <a class="nav-link" href="/parkir/masuk">
                 <i class="menu-icon mdi mdi-crop-free"></i>
-                <span class="menu-title">Voucher</span>
+                <span class="menu-title">Parkir Masuk</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users">
-                <i class="menu-icon fa fa-user-o"></i>
-                <span class="menu-title">Pelajar</span>
-                <i class="menu-arrow"></i>
+            <a class="nav-link" href="/parkir/keluar">
+                <i class="menu-icon mdi mdi-barcode-scan"></i>
+                <span class="menu-title">Parkir Keluar</span>
             </a>
-            <div class="collapse" id="users">
-                <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                    <a class="nav-link" href="/pelajar">Semua Pelajar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/pelajar/invoice">Tagihan</a>
-                </li>
-                </ul>
-            </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#batch" aria-expanded="false" aria-controls="batch">
-                <i class="menu-icon mdi mdi-lightbulb-outline"></i>
-                <span class="menu-title">Batch</span>
-                <i class="menu-arrow"></i>
+            <a class="nav-link" href="/laporan">
+                <i class="menu-icon mdi mdi-elevation-rise"></i>
+                <span class="menu-title">Laporan</span>
             </a>
-            <div class="collapse" id="batch">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/batch?jenis=reguler">Batch Reguler</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/batch?jenis=online">Batch Online</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#brevet" aria-expanded="false" aria-controls="brevet">
-                <i class="menu-icon mdi mdi-content-copy"></i>
-                <span class="menu-title">Brevet</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="brevet">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/brevet?jenis=false">Brevet Reguler</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/brevet?jenis=true">Brevet Online</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/brevet/lokasi">Lokasi</a>
-                    </li>
-                </ul>
-            </div>
         </li>
     </ul>
     </nav>
