@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Transaksi;
+use App\Parkir;
 use Illuminate\Http\Request;
 
-class TransaksiController extends Controller
+class ParkirController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class TransaksiController extends Controller
     public function index()
     {
         //
-        $transaksi = Transaksi::All();
-        return view('admin.transaksi', compact('transaksi'));
+        $parkir = Parkir::All();
+        return view('admin.parkir', compact('parkir'));
     }
 
     /**
@@ -27,7 +27,8 @@ class TransaksiController extends Controller
     public function create()
     {
         //
-        return view('admin.transaksi.create');
+        return view('admin.parkir.create');
+
     }
 
     /**
@@ -40,21 +41,23 @@ class TransaksiController extends Controller
     {
         //
         $request->validate([
-            'parkir_id' => 'required',
-            'lama_parkir' => 'required',
-            'tarif' => 'required',
-            'bayar' => 'required',
+            'jenis_kendaraan_id' => 'required',
+            'prefix' => 'required',
+            'name' => 'required',
+            'no_polisi' => 'required',
+            'status' => 'required',
             'created_at' => 'required'
         ]);
-        Transaksi :: create([
-            'parkir_id' => request('parkir_id'),
-            'lama_parkir' => request('lama_parkir'),
-            'tarif' => request('tarif'),
-            'bayar' => request('bayar'),
+        Parkir :: create([
+            'jenis_kendaraan_id' => request('jenis_kendaraan_id'),
+            'prefix' => request('prefix'),
+            'name' => request('name'),
+            'no_polisi' => request('no_polisi'),
+            'status' => request('status'),
             'created_at' => now()
         ]);
 
-        return redirect('admin/transaksi')->with('flash_message', 'transaksi berhasil!');
+        return redirect('admin/parkir')->with('flash_message', 'parkir telah ditambah!');
     }
 
     /**
