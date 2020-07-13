@@ -58,7 +58,8 @@ class JenisKendaraanConroller extends Controller
      */
     public function show($id)
     {
-        //
+        $kendaraan = JenisKendaraan::find(base64_decode($id));
+        return view('pages.kendaraan.show')->with(compact('kendaraan'));
     }
 
     /**
@@ -81,6 +82,12 @@ class JenisKendaraanConroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'prefix' => 'required|min:2|max:2',
+            'name' => 'required',
+            'tarif' => 'required'
+        ]);
+
         $jeniskendaraan = JenisKendaraan::find($id);
 
         $jeniskendaraan->update([
@@ -101,8 +108,8 @@ class JenisKendaraanConroller extends Controller
      */
     public function destroy($id)
     {
-        $jeniskendaraan = JenisKendaraan::find($id);
-        $jeniskendaraan->delete();
-        return back()->with('message', 'jenis kendaraan terhapus!');
+        $kendaraan = JenisKendaraan::find($id);
+        $kendaraan->delete();
+        return redirect('/kendaraan')->with('message', 'Jenis Kendaran berhasil dihapus');
     }
 }
