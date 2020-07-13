@@ -14,7 +14,6 @@ class ParkirController extends Controller
      */
     public function index()
     {
-        //
         $parkir = Parkir::All();
         return view('admin.parkir', compact('parkir'));
     }
@@ -27,8 +26,6 @@ class ParkirController extends Controller
     public function create()
     {
         //
-        return view('admin.parkir.create');
-
     }
 
     /**

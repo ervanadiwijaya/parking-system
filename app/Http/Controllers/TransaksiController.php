@@ -14,7 +14,6 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
         $transaksi = Transaksi::All();
         return view('admin.transaksi', compact('transaksi'));
     }
@@ -26,7 +25,6 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
         return view('admin.transaksi.create');
     }
 
@@ -38,7 +36,6 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             'parkir_id' => 'required',
             'lama_parkir' => 'required',
@@ -46,7 +43,7 @@ class TransaksiController extends Controller
             'bayar' => 'required',
             'created_at' => 'required'
         ]);
-        Transaksi :: create([
+        Transaksi::create([
             'parkir_id' => request('parkir_id'),
             'lama_parkir' => request('lama_parkir'),
             'tarif' => request('tarif'),
@@ -54,7 +51,7 @@ class TransaksiController extends Controller
             'created_at' => now()
         ]);
 
-        return redirect('admin/transaksi')->with('flash_message', 'transaksi berhasil!');
+        return back()->with('message', 'transaksi berhasil!');
     }
 
     /**

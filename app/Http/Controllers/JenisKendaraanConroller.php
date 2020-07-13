@@ -14,7 +14,8 @@ class JenisKendaraanConroller extends Controller
      */
     public function index()
     {
-        return view('pages.kendaraan.index');
+        $kendaraan = JenisKendaraan::orderBy('created_at', 'desc')->get();
+        return view('pages.kendaraan.index')->with(compact('kendaraan'));
     }
 
     /**
@@ -25,8 +26,6 @@ class JenisKendaraanConroller extends Controller
     public function create()
     {
         //
-        return view('admin.jeniskendaraan.create');
-
     }
 
     /**
@@ -38,18 +37,17 @@ class JenisKendaraanConroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'prefix' => 'required',
+            'prefix' => 'required|min:2|max:2|unique:jenis_kendaraan',
             'name' => 'required',
             'tarif' => 'required'
         ]);
-        JenisKendaraan :: create([
+        JenisKendaraan::create([
             'prefix' => request('prefix'),
             'name' => request('name'),
             'tarif' => request('tarif')
         ]);
 
-        return redirect('admin/jeniskendaraan')->with('flash_message', 'jenis kendaraan ditambah!');
-            //
+        return back()->with('message', 'jenis kendaraan ditambah!');
     }
 
     /**
@@ -72,8 +70,6 @@ class JenisKendaraanConroller extends Controller
     public function edit($id)
     {
         //
-        $jeniskendaraan = JenisKendaraan::find($id);
-        return view('admin.jeniskendaraan.edit', compact('jeniskendaraan'));
     }
 
     /**
@@ -85,7 +81,6 @@ class JenisKendaraanConroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $jeniskendaraan = JenisKendaraan::find($id);
 
         $jeniskendaraan->update([
@@ -94,7 +89,7 @@ class JenisKendaraanConroller extends Controller
             'tarif'=>request('tarif')
         ]);
 
-        return redirect('admin/jeniskendaraan')->with('flash_message', 'jenis kendaraan diperbarui!');
+        return back()->with('message', 'jenis kendaraan diperbarui!');
 
     }
 
@@ -106,10 +101,8 @@ class JenisKendaraanConroller extends Controller
      */
     public function destroy($id)
     {
-        //
         $jeniskendaraan = JenisKendaraan::find($id);
         $jeniskendaraan->delete();
-
-        return redirect('admin/jeniskendaraan')->with('flash_message', 'jenis kendaraan terhapus!');
+        return back()->with('message', 'jenis kendaraan terhapus!');
     }
 }

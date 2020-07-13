@@ -9,12 +9,12 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="#">
+            <form method="POST" action="{{route('kendaraan.store')}}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Prefix Id</label>
-                        <input name="name" value="" type="text" class="form-control">
+                        <input name="prefix" value="" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama Kendaraan</label>
@@ -22,9 +22,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tarif / Jam</label>
-                        <input name="biaya" type="number" class="form-control">
+                        <input name="tarif" type="number" class="form-control">
                     </div>
-                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -76,13 +75,15 @@
                             </tr>
                         </thead>
                         <tbody id="index_query">
-                            <tr>
-                                <td>1</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
+                            @foreach ($kendaraan as $key => $item)    
+                                <tr>
+                                    <td>{{$key + 1}}</td>
+                                    <td><a href="/kendaraan/{{base64_encode($item->id)}}">{{$item->prefix}}-{{str_pad($item->id, 4, '0', STR_PAD_LEFT)}}</a></td>
+                                    <td>{{$item->name}}</td>
+                                    <td>Rp {{number_format($item->tarif, 0,',',',')}} / Jam</td>
+                                    <td>{{$item->created_at}}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
