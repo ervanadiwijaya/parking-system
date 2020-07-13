@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Transaksi;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -13,7 +14,8 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $transaksi = Transaksi::All();
+        return view('admin.transaksi', compact('transaksi'));
     }
 
     /**
@@ -23,7 +25,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.transaksi.create');
     }
 
     /**
@@ -34,7 +36,22 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'parkir_id' => 'required',
+            'lama_parkir' => 'required',
+            'tarif' => 'required',
+            'bayar' => 'required',
+            'created_at' => 'required'
+        ]);
+        Transaksi::create([
+            'parkir_id' => request('parkir_id'),
+            'lama_parkir' => request('lama_parkir'),
+            'tarif' => request('tarif'),
+            'bayar' => request('bayar'),
+            'created_at' => now()
+        ]);
+
+        return back()->with('message', 'transaksi berhasil!');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\JenisKendaraan;
 use Illuminate\Http\Request;
 
 class JenisKendaraanConroller extends Controller
@@ -13,7 +14,8 @@ class JenisKendaraanConroller extends Controller
      */
     public function index()
     {
-        //
+        $kendaraan = JenisKendaraan::orderBy('created_at', 'desc')->get();
+        return view('pages.kendaraan.index')->with(compact('kendaraan'));
     }
 
     /**
@@ -34,7 +36,18 @@ class JenisKendaraanConroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'prefix' => 'required|min:2|max:2|unique:jenis_kendaraan',
+            'name' => 'required',
+            'tarif' => 'required'
+        ]);
+        JenisKendaraan::create([
+            'prefix' => request('prefix'),
+            'name' => request('name'),
+            'tarif' => request('tarif')
+        ]);
+
+        return back()->with('message', 'jenis kendaraan ditambah!');
     }
 
     /**
@@ -68,7 +81,16 @@ class JenisKendaraanConroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $jeniskendaraan = JenisKendaraan::find($id);
+
+        $jeniskendaraan->update([
+            'prefix'=>request('prefix'),
+            'name'=>request('name'),
+            'tarif'=>request('tarif')
+        ]);
+
+        return back()->with('message', 'jenis kendaraan diperbarui!');
+
     }
 
     /**
@@ -79,6 +101,8 @@ class JenisKendaraanConroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $jeniskendaraan = JenisKendaraan::find($id);
+        $jeniskendaraan->delete();
+        return back()->with('message', 'jenis kendaraan terhapus!');
     }
 }
