@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\JenisKendaraan;
 use Illuminate\Http\Request;
 
 class JenisKendaraanConroller extends Controller
@@ -24,6 +25,8 @@ class JenisKendaraanConroller extends Controller
     public function create()
     {
         //
+        return view('admin.jeniskendaraan.create');
+
     }
 
     /**
@@ -34,7 +37,19 @@ class JenisKendaraanConroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'prefix' => 'required',
+            'name' => 'required',
+            'tarif' => 'required'
+        ]);
+        JenisKendaraan :: create([
+            'prefix' => request('prefix'),
+            'name' => request('name'),
+            'tarif' => request('tarif')
+        ]);
+
+        return redirect('admin/jeniskendaraan')->with('flash_message', 'jenis kendaraan ditambah!');
+            //
     }
 
     /**
@@ -57,6 +72,8 @@ class JenisKendaraanConroller extends Controller
     public function edit($id)
     {
         //
+        $jeniskendaraan = JenisKendaraan::find($id);
+        return view('admin.jeniskendaraan.edit', compact('jeniskendaraan'));
     }
 
     /**
@@ -69,6 +86,16 @@ class JenisKendaraanConroller extends Controller
     public function update(Request $request, $id)
     {
         //
+        $jeniskendaraan = JenisKendaraan::find($id);
+
+        $jeniskendaraan->update([
+            'prefix'=>request('prefix'),
+            'name'=>request('name'),
+            'tarif'=>request('tarif')
+        ]);
+
+        return redirect('admin/jeniskendaraan')->with('flash_message', 'jenis kendaraan diperbarui!');
+
     }
 
     /**
@@ -80,5 +107,9 @@ class JenisKendaraanConroller extends Controller
     public function destroy($id)
     {
         //
+        $jeniskendaraan = JenisKendaraan::find($id);
+        $jeniskendaraan->delete();
+
+        return redirect('admin/jeniskendaraan')->with('flash_message', 'jenis kendaraan terhapus!');
     }
 }
