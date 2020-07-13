@@ -14,8 +14,8 @@ class ParkirController extends Controller
      */
     public function index()
     {
-        $parkir = Parkir::All();
-        return view('admin.parkir', compact('parkir'));
+        $parkir = Parkir::get();
+        return view('pages.parkir.masuk.index');
     }
 
     /**
