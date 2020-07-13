@@ -12,6 +12,14 @@
                     <div class="content-wrapper">
                         @yield('body')
                     </div>
+                    <footer class="footer">
+                      <div class="container-fluid clearfix">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">UAS Semester 4, Pemrograman Web Enterprise © 2020
+                          <a href="https://github.com/vnxx" target="_blank">Kevin Adam</a>, <a href="https://github.com/ervanadiwijaya" target="_blank">Ervan Adi Wijaya</a>, Yanwar Afendi.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Universitas Mercu Buana
+                        </span>
+                      </div>
+                    </footer>
                 </div>
             </div>
         </div>
