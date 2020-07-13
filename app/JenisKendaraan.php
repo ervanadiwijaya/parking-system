@@ -10,6 +10,6 @@ class JenisKendaraan extends Model
     use SoftDeletes;
     protected $table = 'jenis_kendaraan';
     protected $fillable = [
-        'prefix', 'name', 'tarif'
+        'prefix', 'name', 'tarif_perjam', 'tarif_awal', 'tarif_max'
     ];
 }
