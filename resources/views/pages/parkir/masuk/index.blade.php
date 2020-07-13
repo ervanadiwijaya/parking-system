@@ -17,10 +17,6 @@
                         <input name="prefix" value="" type="text" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Prefix</label>
-                        <input name="name" value="" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
                         <label for="exampleInputEmail1">No Polisi</label>
                         <input name="no_polisi" type="number" class="form-control">
                     </div>
@@ -76,11 +72,11 @@
                         </thead>
                         <tbody id="index_query">
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
                                 </tr>
                         </tbody>
                     </table>

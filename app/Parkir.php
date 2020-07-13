@@ -8,7 +8,7 @@ class Parkir extends Model
 {
     protected $table = 'parkir';
     protected $fillable = [
-        'jenis_kendaraan_id', 'prefix', 'name', 'no_polisi', 'status', 'created_at'
+        'jenis_kendaraan_id', 'name', 'no_polisi', 'status', 'created_at'
     ];
     public $timestamps = false;
 }

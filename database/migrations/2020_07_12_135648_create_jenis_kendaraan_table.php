@@ -17,7 +17,9 @@ class CreateJenisKendaraanTable extends Migration
             $table->id();
             $table->char('prefix', 3);
             $table->string('name');
-            $table->unsignedInteger('tarif');
+            $table->unsignedInteger('tarif_perjam');
+            $table->unsignedInteger('tarif_awal');
+            $table->unsignedInteger('tarif_max')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
