@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +18,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('karyawan', 'HomeController@index');
 Route::resource('kendaraan', 'JenisKendaraanConroller')->except('create', 'edit');
 Route::prefix('parkir')->group(function(){
-    Route::get('masuk', 'HomeController@index');
-    Route::get('keluar', 'HomeController@index');
+    Route::resource('masuk', 'ParkirController')->except('create','edit');
+    Route::resource('keluar', 'TransaksiController')->except('create','edit');
 });
 Route::get('laporan', 'HomeController@index')->name('laporan');
 Auth::routes();
