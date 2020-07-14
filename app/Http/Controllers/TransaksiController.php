@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Parkir;
 use App\Transaksi;
 use Illuminate\Http\Request;
 
@@ -37,21 +38,45 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'parkir_id'     => 'required',
-            'lama_parkir'   => 'required',
-            'tarif'         => 'required',
-            'bayar'         => 'required',
-            'created_at'    => 'required'
-        ]);
-        Transaksi::create([
-            'parkir_id'     => request('parkir_id'),
-            'lama_parkir'   => request('lama_parkir'),
-            'tarif'         => request('tarif'),
-            'bayar'         => request('bayar'),
-            'created_at'    => now()
+            'kode_parkir'     => 'required'
         ]);
 
-        return back()->with('message', 'transaksi berhasil!');
+        $keluar_date = strtotime(now());
+        $parkir = Parkir::with('jenis')->findOrfail(substr($request->input('kode_parkir'), 4));
+        $masuk_date =strtotime($parkir->created_at);
+        
+        // data perhitungan waktu dari sini: https://www.geeksforgeeks.org/how-to-calculate-the-difference-between-two-dates-in-php/
+        $diff = abs($keluar_date - $masuk_date); 
+        $years = floor($diff / (365*60*60*24));
+        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24)); 
+        $days = floor(($diff - $years * 365*60*60*24 -  $months*30*60*60*24)/ (60*60*24));
+        $hours = floor(($diff - $years * 365*60*60*24  - $months*30*60*60*24 - $days*60*60*24) / (60*60)); 
+        $minutes = floor(($diff - $years * 365*60*60*24  - $months*30*60*60*24 - $days*60*60*24  - $hours*60*60)/ 60); 
+        
+        $total_menit = $hours * 60 + $minutes;
+
+        $tagihan = 0;
+        if ($hours <= 2) {
+            $tagihan = $parkir->jenis->tarif_awal;
+        }else{
+            $tagihan = $parkir->jenis->tarif_perjam * $hours;
+            if ($tagihan >= $parkir->jenis->tarif_max) {
+                $tagihan = $parkir->jenis->tarif_max;
+            }
+        }
+
+        $parkir->status = true;
+        $parkir->update();
+
+        Transaksi::create([
+            'parkir_id'     => $parkir->id,
+            'lama_parkir'   => $total_menit, 
+            'tarif'         => $parkir->jenis->tarif_perjam,
+            'tagihan'       => $tagihan,
+            'created_at'    => date('Y-m-d H:i:s', $keluar_date)
+        ]);
+
+        return back()->with('message', 'Data Berhasil ditambahkan');
     }
 
     /**

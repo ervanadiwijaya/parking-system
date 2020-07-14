@@ -91,7 +91,7 @@
                                                 <label class="badge badge-danger">Error</label>
                                         @endswitch
                                     </td>
-                                    <td>{{date('H:s / d M Y', strtotime($item->created_at))}}</td>
+                                    <td>{{date('H:i / d M Y', strtotime($item->created_at))}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
