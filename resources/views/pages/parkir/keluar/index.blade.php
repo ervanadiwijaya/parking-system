@@ -44,7 +44,7 @@
                                     #
                                 </th>
                                 <th>
-                                    Parkir Id
+                                    Kode Parkir
                                 </th>
                                 <th>
                                     No Polisi
@@ -67,16 +67,24 @@
                             </tr>
                         </thead>
                         <tbody id="index_query">
+                            @foreach ($transaksi as $key => $item)    
                                 <tr>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
+                                    <td>{{$key +1}}</td>
+                                    <td>{{$item->parkir->kode_parkir}}</td>
+                                    <td>{{$item->parkir->no_polisi}}</td>
+                                    <td>
+                                        @if ($item->lama_parkir >= 60)
+                                            {{floor($item->lama_parkir / 60)}} jam, {{($item->lama_parkir % 60)}} menit
+                                        @else
+                                            {{$item->lama_parkir}} menit
+                                        @endif
+                                    </td>
+                                    <td>{{$item->tarif}}</td>
+                                    <td>{{$item->tagihan}}</td>
+                                    <td>{{$item->parkir->created_at}}</td>
+                                    <td>{{$item->created_at}}</td>
                                 </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

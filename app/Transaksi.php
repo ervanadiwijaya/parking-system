@@ -11,4 +11,8 @@ class Transaksi extends Model
         'parkir_id', 'lama_parkir', 'tarif', 'tagihan', 'created_at'
     ];
     public $timestamps = false;
+
+    public function parkir(){
+        return $this->belongsTo('App\Parkir', 'parkir_id');
+    }
 }

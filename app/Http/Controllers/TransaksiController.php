@@ -15,8 +15,8 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksi = Transaksi::get();
-        return view('pages.parkir.keluar.index');
+        $transaksi = Transaksi::with('parkir.jenis')->whereDate('created_at', now())->orderBy('created_at')->get();
+        return view('pages.parkir.keluar.index')->with(compact('transaksi'));
     }
 
     /**
@@ -54,6 +54,9 @@ class TransaksiController extends Controller
         $minutes = floor(($diff - $years * 365*60*60*24  - $months*30*60*60*24 - $days*60*60*24  - $hours*60*60)/ 60); 
         
         $total_menit = $hours * 60 + $minutes;
+        if ($total_menit == 0) {
+            $total_menit = 1;
+        }
 
         $tagihan = 0;
         if ($hours <= 2) {
