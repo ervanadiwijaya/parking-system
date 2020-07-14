@@ -89,7 +89,7 @@
                         <h1>Parking Receipt</h1>
                     </div>
                     <div class="qr">
-                        <?php echo DNS1D::getBarcodeHTML($id, 'CODABAR', 3,80); ?>
+                        <?php echo DNS1D::getBarcodeHTML($id, 'C128', 3,80); ?>
                     </div>
                     <p style="text-align: center; font-size: 18pt">{{$data->kode_parkir}}</p>
                     <div style="line-height: 1; margin-top:1em;margin-bottom:1em">
