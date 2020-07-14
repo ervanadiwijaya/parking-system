@@ -19,8 +19,8 @@ Route::middleware('auth')->group(function(){
     Route::resource('karyawan', 'UserController')->except('create', 'edit');
     Route::resource('kendaraan', 'JenisKendaraanConroller')->except('create', 'edit');
     Route::prefix('parkir')->group(function(){
-        Route::resource('masuk', 'ParkirController')->except('create','edit');
-        Route::resource('keluar', 'TransaksiController')->except('create','edit');
+        Route::resource('masuk', 'ParkirController')->only('index','store');
+        Route::resource('keluar', 'TransaksiController')->only('index','store');
     });
     Route::get('laporan', 'HomeController@index')->name('laporan');
 });

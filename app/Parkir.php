@@ -8,7 +8,12 @@ class Parkir extends Model
 {
     protected $table = 'parkir';
     protected $fillable = [
-        'jenis_kendaraan_id', 'name', 'no_polisi', 'status', 'created_at'
+        'jenis_kendaraan_id', 'no_polisi', 'status', 'created_at'
     ];
     public $timestamps = false;
+
+    // constraint 
+    public function jenis(){
+        return $this->belongsTo('App\JenisKendaraan', 'jenis_kendaraan_id');
+    }
 }

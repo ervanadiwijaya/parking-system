@@ -1,34 +1,5 @@
 @extends('layouts.admin')
 @section('body')
-<div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Tambah Kendaraan Masuk</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="POST" action="#">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Jenis Kendaraan Id</label>
-                        <input name="prefix" value="" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">No Polisi</label>
-                        <input name="no_polisi" type="number" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 <div class="content-header d-flex flex-column flex-md-row mb-3">
     <div class="row">
         <nav aria-label="breadcrumb">
@@ -37,11 +8,39 @@
             </ol>
         </nav>
     </div>
-    <div class="wrapper ml-0 ml-md-auto my-auto d-flex align-items-center pt-4 pt-md-0">
-      <button data-toggle="modal" data-target="#new"  class="btn btn-success btn-sm ml-auto">Tambah Baru</button>
-    </div>
 </div>
 @include('layouts.components.messageAlert')
+<div class="row mb-3">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="{{route('masuk.store')}}">
+                    @csrf
+                    <div class="form-row">
+                      <div class="col">
+                            <select required name="jenis_kendaraan" class="form-control">
+                                <option value="">-- Pilih Jenis Kendaraan --</option>
+                                @foreach ($jenis_kendaraan as $kendaraan)
+                                    <option value="{{$kendaraan->id}}"
+                                        @if (isset($_GET['default']))
+                                            {{strtolower($_GET['default'] )== strtolower($kendaraan->name) ? 'selected' : null}}
+                                        @endif    
+                                    >{{$kendaraan->name}}</option>
+                                @endforeach
+                            </select>
+                      </div>
+                      <div class="col">
+                        <input name="no_polisi" type="text" class="form-control text-uppercase" placeholder="Nomor Polisi">
+                      </div>
+                      <div class="col-md-2">
+                        <button type="submit" class="btn btn-block btn-success">Tambahkan</button>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col">
         <div class="card">
@@ -57,10 +56,10 @@
                                     #
                                 </th>
                                 <th>
-                                    Jenis Kendaraan
+                                    No Polisi
                                 </th>
                                 <th>
-                                    No Polisi
+                                    Jenis Kendaraan
                                 </th>
                                 <th>
                                     Status
@@ -71,13 +70,26 @@
                             </tr>
                         </thead>
                         <tbody id="index_query">
+                            @foreach ($parkir as $key => $item)    
                                 <tr>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
+                                    <td>{{$key+1}}</td>
+                                    <td>{{$item->no_polisi}}</td>
+                                    <td>{{$item->jenis->name}}</td>
+                                    <td>
+                                        @switch($item->status)
+                                            @case(false)
+                                                <label class="badge badge-info">Parkir Masuk</label>
+                                                @break
+                                            @case(true)
+                                                <label class="badge badge-success">Parkir Keluar</label>
+                                                @break
+                                            @default
+                                                <label class="badge badge-danger">Error</label>
+                                        @endswitch
+                                    </td>
+                                    <td>{{date('H:s / d M Y', strtotime($item->created_at))}}</td>
                                 </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

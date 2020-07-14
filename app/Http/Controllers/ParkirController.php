@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Parkir;
+use App\JenisKendaraan;
 use Illuminate\Http\Request;
 
 class ParkirController extends Controller
@@ -14,8 +15,13 @@ class ParkirController extends Controller
      */
     public function index()
     {
-        $parkir = Parkir::get();
-        return view('pages.parkir.masuk.index');
+        $parkir = Parkir::with('jenis')
+        ->where('status', false)
+        ->whereDate('created_at', now())
+        ->orderBy('created_at', 'desc')
+        ->get();
+        $jenis_kendaraan = JenisKendaraan::orderBy('created_at')->get();
+        return view('pages.parkir.masuk.index')->with(compact('parkir', 'jenis_kendaraan'));
     }
 
     /**
@@ -36,25 +42,19 @@ class ParkirController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
-            'jenis_kendaraan_id' => 'required',
-            'prefix' => 'required',
-            'name' => 'required',
-            'no_polisi' => 'required',
-            'status' => 'required',
-            'created_at' => 'required'
-        ]);
-        Parkir :: create([
-            'jenis_kendaraan_id' => request('jenis_kendaraan_id'),
-            'prefix' => request('prefix'),
-            'name' => request('name'),
-            'no_polisi' => request('no_polisi'),
-            'status' => request('status'),
-            'created_at' => now()
+            'jenis_kendaraan'    => 'required',
+            'no_polisi'             => 'required',
         ]);
 
-        return redirect('admin/parkir')->with('flash_message', 'parkir telah ditambah!');
+        Parkir::create([
+            'jenis_kendaraan_id'    => request('jenis_kendaraan'),
+            'no_polisi'             => strtoupper(request('no_polisi')),
+            'status'                => false,
+            'created_at'            => now()
+        ]);
+
+        return back()->with('message', 'Data berhasil ditambahkan');
     }
 
     /**
