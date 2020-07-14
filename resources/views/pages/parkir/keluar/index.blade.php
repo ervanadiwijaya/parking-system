@@ -14,17 +14,22 @@
     <div class="col">
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="{{route('keluar.store')}}">
-                    @csrf
-                    <div class="form-row">
-                      <div class="col">
-                        <input name="kode_parkir" required type="text" class="form-control text-uppercase" placeholder="Kode Parkir">
-                      </div>
-                      <div class="col-md-2">
-                        <button type="submit" class="btn btn-block btn-success">Tambahkan</button>
-                      </div>
+                <div class="row">
+                    <div id="BarcodeScanner" class="col">
+                        
                     </div>
-                  </form>
+                    <script src="{{ asset('js/app.js') }}"></script>
+                    <div class="col">
+                        <form method="POST" action="{{route('keluar.store')}}">
+                            @csrf
+                            <div class="form-group">
+                                <label>Kode Parkir</label>
+                                <input name="kode_parkir" required type="text" class="form-control text-uppercase" placeholder="Kode Parkir">
+                            </div>
+                            <button type="submit" class="btn btn-block btn-success">Tambahkan</button>
+                          </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
