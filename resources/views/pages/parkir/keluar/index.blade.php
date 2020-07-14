@@ -38,6 +38,23 @@
     </div>
 </div>
 @include('layouts.components.messageAlert')
+<div class="row mb-3">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div id="BarcodeScanner" class="col">
+                        
+                    </div>
+                    <script src="{{ asset('js/app.js') }}"></script>
+                    <div class="col">
+                        ok
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col">
         <div class="card">
