@@ -23,5 +23,6 @@ Route::middleware('auth')->group(function(){
         Route::resource('keluar', 'TransaksiController')->only('index','store');
     });
     Route::get('laporan', 'HomeController@index')->name('laporan');
+    Route::get('cetak/tiket/{id}', 'CetakController@tiketParkir')->name('cetak.parkir');
 });
 Auth::routes();
