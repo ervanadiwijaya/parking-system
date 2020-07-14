@@ -20,6 +20,8 @@ class ParkirController extends Controller
         ->whereDate('created_at', now())
         ->orderBy('created_at', 'desc')
         ->get();
+
+        // return $parkir;
         $jenis_kendaraan = JenisKendaraan::orderBy('created_at')->get();
         return view('pages.parkir.masuk.index')->with(compact('parkir', 'jenis_kendaraan'));
     }

@@ -30,7 +30,7 @@
                             </select>
                       </div>
                       <div class="col">
-                        <input name="no_polisi" type="text" class="form-control text-uppercase" placeholder="Nomor Polisi">
+                        <input name="no_polisi" required type="text" class="form-control text-uppercase" placeholder="Nomor Polisi">
                       </div>
                       <div class="col-md-2">
                         <button type="submit" class="btn btn-block btn-success">Tambahkan</button>
@@ -56,6 +56,9 @@
                                     #
                                 </th>
                                 <th>
+                                    Kode Parkir
+                                </th>
+                                <th>
                                     No Polisi
                                 </th>
                                 <th>
@@ -73,6 +76,7 @@
                             @foreach ($parkir as $key => $item)    
                                 <tr>
                                     <td>{{$key+1}}</td>
+                                    <td><a target="_blank" href="/cetak/tiket/{{$item->kode_parkir}}">{{$item->kode_parkir}}</a></td>
                                     <td>{{$item->no_polisi}}</td>
                                     <td>{{$item->jenis->name}}</td>
                                     <td>
