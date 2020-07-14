@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tket</title>
+    <title>{{$data->kode_parkir}}</title>
     
     <style>
         *{
@@ -13,7 +13,7 @@
             font-family: 'Times New Roman', Times, serif;
         }
         @page                {
-            size: A6 portrait;
+            size: A7 portrait;
             margin: 0;
         }
         .qr{
@@ -89,15 +89,16 @@
                         <h1>Parking Receipt</h1>
                     </div>
                     <div class="qr">
-                        <?php echo DNS1D::getBarcodeHTML($id, 'C128', 3,80); ?>
+                        <?php echo DNS2D::getBarcodeHTML($id, 'QRCODE', 5,5); ?>
                     </div>
                     <p style="text-align: center; font-size: 18pt">{{$data->kode_parkir}}</p>
-                    <div style="line-height: 1; margin-top:1em;margin-bottom:1em">
+                    <div style="line-height: 1; margin-top:0.5em;">
                         <p style="text-align: center; font-size: 20pt"><b>{{date('d-m-Y', strtotime($data->created_at))}}</b></p>
                         <p style="text-align: center; font-size: 35pt"><b>{{date('H:s:t', strtotime($data->created_at))}}</b></p>
                     </div>
 
-                    <p style="font-size: 11pt; text-align:center;margin-top:1em">Terima Kasih atas kunjungan anda!</p>
+                    <p style="font-size: 11pt; text-align:center;margin-top:0.5em">Terima Kasih atas kunjungan anda!</p>
+                    <p style="font-size: 8pt;text-align:center"><b>UAS PWE KEVIN ADAM, ERVAN ADI WIJAYA, YANUAR EFENDI</b></p>
                 </div>
             </div>
         </div>
@@ -116,7 +117,7 @@
             document.body.style.backgroundColor = "#e0e0e0";
             document.body.innerHTML = temp;
         }
-        // _print_label()
+        _print_label()
     </script>
 </body>
 </html>
