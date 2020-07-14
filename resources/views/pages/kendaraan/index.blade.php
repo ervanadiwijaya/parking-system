@@ -80,7 +80,7 @@
                                     <td>{{$key + 1}}</td>
                                     <td><a href="/kendaraan/{{base64_encode($item->id)}}">{{$item->prefix}}-{{str_pad($item->id, 4, '0', STR_PAD_LEFT)}}</a></td>
                                     <td>{{$item->name}}</td>
-                                    <td>Rp {{number_format($item->tarif, 0,',',',')}} / Jam</td>
+                                    <td>Rp {{number_format($item->tarif_perjam, 0,',',',')}} / Jam</td>
                                     <td>{{$item->created_at}}</td>
                                 </tr>
                             @endforeach
