@@ -9,7 +9,7 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{route('kendaraan.store')}}">
+            <form method="POST" action="{{route('karyawan.store')}}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-group">
                         <label>Pilih Role</label>
-                        <select required name="kind" class="form-control">
+                        <select required name="role" class="form-control">
                             <option value="">-- Pilih Role --</option>
                             <option value="admin">Admin</option>
                             <option value="petugas">Petugas Lapangan</option>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input name="password" type="number" class="form-control">
+                        <input name="password" type="password" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -45,7 +45,7 @@
     <div class="row">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item active" aria-current="page">Semua Jenis Kendaraan</li>
+                <li class="breadcrumb-item active" aria-current="page">Semua Karyawan</li>
             </ol>
         </nav>
     </div>
@@ -83,13 +83,26 @@
                             </tr>
                         </thead>
                         <tbody id="index_query">
-                            <tr>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
+                            @foreach ($karyawan as $key => $item)    
+                                <tr>
+                                    <td>{{$key + 1}}</td>
+                                    <td><a href="/karyawan/{{base64_encode(str_pad($item->id, 5, '0', STR_PAD_LEFT))}}">{{$item->name}}</a></td>
+                                    <td>
+                                        @switch($item->role)
+                                            @case('admin')
+                                                <label class="badge badge-info">{{$item->role}}</label>
+                                                @break
+                                            @case('petugas')
+                                                <label class="badge badge-success">{{$item->role}}</label>
+                                                @break
+                                            @default
+                                                <label class="badge badge-danger">{{$item->role}}</label>
+                                        @endswitch
+                                    </td>
+                                    <td>{{$item->email}}</td>
+                                    <td>{{$item->created_at}}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

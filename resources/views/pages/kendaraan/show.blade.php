@@ -9,9 +9,6 @@
             </ol>
         </nav>
     </div>
-    <div class="wrapper ml-0 ml-md-auto my-auto d-flex align-items-center pt-4 pt-md-0">
-      <button data-toggle="modal" data-target="#new"  class="btn btn-success btn-sm ml-auto">Tambah Baru</button>
-    </div>
 </div>
 @include('layouts.components.messageAlert')
 <div class="row">
