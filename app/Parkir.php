@@ -17,6 +17,10 @@ class Parkir extends Model
             $jenis = $parkir->jenis()->first();
             $parkir->kode_parkir = 'P'.$jenis->prefix.'-'.str_pad($parkir->id, 5, '0', STR_PAD_LEFT);
         }); 
+
+        static::updating(function($parkir){
+            unset($parkir->kode_parkir);
+        });
     }
     // constraint 
     public function jenis(){

@@ -1,30 +1,5 @@
 @extends('layouts.admin')
 @section('body')
-<div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Tambah Kendaraan Keluar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="POST" action="#">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">parkir id</label>
-                        <input name="prefix" value="" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 <div class="content-header d-flex flex-column flex-md-row mb-3">
     <div class="row">
         <nav aria-label="breadcrumb">
@@ -33,11 +8,27 @@
             </ol>
         </nav>
     </div>
-    <div class="wrapper ml-0 ml-md-auto my-auto d-flex align-items-center pt-4 pt-md-0">
-      <button data-toggle="modal" data-target="#new"  class="btn btn-success btn-sm ml-auto">Tambah Baru</button>
-    </div>
 </div>
 @include('layouts.components.messageAlert')
+<div class="row mb-3">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="{{route('keluar.store')}}">
+                    @csrf
+                    <div class="form-row">
+                      <div class="col">
+                        <input name="kode_parkir" required type="text" class="form-control text-uppercase" placeholder="Kode Parkir">
+                      </div>
+                      <div class="col-md-2">
+                        <button type="submit" class="btn btn-block btn-success">Tambahkan</button>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col">
         <div class="card">
@@ -53,7 +44,7 @@
                                     #
                                 </th>
                                 <th>
-                                    Parkir Id
+                                    Kode Parkir
                                 </th>
                                 <th>
                                     No Polisi
@@ -62,10 +53,10 @@
                                     Lama Parkir
                                 </th>
                                 <th>
-                                    Tarif
+                                    Tarif / Jam
                                 </th>
                                 <th>
-                                    Bayar
+                                    Tagihan
                                 </th>
                                 <th>
                                     Waktu Masuk
@@ -76,16 +67,24 @@
                             </tr>
                         </thead>
                         <tbody id="index_query">
+                            @foreach ($transaksi as $key => $item)    
                                 <tr>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
+                                    <td>{{$key +1}}</td>
+                                    <td>{{$item->parkir->kode_parkir}}</td>
+                                    <td>{{$item->parkir->no_polisi}}</td>
+                                    <td>
+                                        @if ($item->lama_parkir >= 60)
+                                            {{floor($item->lama_parkir / 60)}} jam, {{($item->lama_parkir % 60)}} menit
+                                        @else
+                                            {{$item->lama_parkir}} menit
+                                        @endif
+                                    </td>
+                                    <td>{{$item->tarif}}</td>
+                                    <td>{{$item->tagihan}}</td>
+                                    <td>{{$item->parkir->created_at}}</td>
+                                    <td>{{$item->created_at}}</td>
                                 </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
