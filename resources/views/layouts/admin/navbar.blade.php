@@ -11,7 +11,7 @@
         <div class="navbar-menu-wrapper d-flex align-items-center">
           <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/laporan" class="nav-link">
                 <i class="mdi mdi-elevation-rise"></i>Reports</a>
             </li>
           </ul>
@@ -35,9 +35,16 @@
                     </div>
                   </div>
                 </a>
-                <a href="/logout" class="dropdown-item btn mt-2">
+                <a href="{{route('logout')}}" 
+                  onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();"
+                  class="dropdown-item btn mt-2"
+                >
                   Sign Out
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
               </div>
             </li>
           </ul>
