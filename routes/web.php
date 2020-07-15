@@ -25,7 +25,8 @@ Route::middleware('auth')->group(function(){
     Route::middleware('check.role:admin')->group(function(){
         Route::resource('karyawan', 'UserController')->except('create', 'edit');
         Route::resource('kendaraan', 'JenisKendaraanConroller')->except('create', 'edit');
-        Route::get('laporan', 'HomeController@index')->name('laporan');
+        Route::get('laporan', 'HomeController@laporan')->name('laporan');
+        Route::post('laporan', 'HomeController@laporanCreate')->name('laporan.create');
     });
 });
 Auth::routes();
