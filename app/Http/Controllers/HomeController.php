@@ -49,6 +49,9 @@ class HomeController extends Controller
             'end_date'      => 'required',
         ]);
 
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
         $_get_method = $request->input('_get');
 
         $laporan = Transaksi::with(['parkir.jenis'], ['parkir' => function($q){
@@ -59,7 +62,7 @@ class HomeController extends Controller
         ->get();
 
        if ($_get_method == 'cetak') {
-          return redirect('/cetak/laporan');
+        return view('pages.cetak.parkir_laporan')->with(compact('laporan', 'start_date', 'end_date'));
        }
         return view('pages.laporan.index')->with(compact('laporan'));
     }
