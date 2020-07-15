@@ -16,17 +16,9 @@ use Illuminate\Support\Facades\Auth;
 
 Route::middleware('auth')->group(function(){
     Route::get('/', 'HomeController@index')->name('home');
-<<<<<<< Updated upstream
-    Route::resource('karyawan', 'UserController')->except('create', 'edit');
-    Route::resource('kendaraan', 'JenisKendaraanConroller')->except('create', 'edit');
-=======
-<<<<<<< Updated upstream
-=======
     Route::resource('karyawan', 'UserController')->except('create', 'edit');
     Route::resource('upah', 'UpahController')->except('create', 'edit');
     Route::resource('kendaraan', 'JenisKendaraanConroller')->except('create', 'edit');
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     Route::prefix('parkir')->group(function(){
         Route::resource('masuk', 'ParkirController')->only('index','store');
         Route::resource('keluar', 'TransaksiController')->only('index','store');

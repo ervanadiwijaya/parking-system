@@ -25,14 +25,17 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
         @if (Auth::user()->role == 'admin')    
             <li class="nav-item">
                 <a class="nav-link" href="/karyawan">
                     <i class="menu-icon mdi mdi-badge-account-horizontal-outline"></i>
                     <span class="menu-title">Karyawan</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/upah">
+                    <i class="menu-icon mdi  mdi-currency-usd"></i>
+                    <span class="menu-title">Upah Karyawan</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -48,34 +51,6 @@
                 </a>
             </li>
         @endif
-
-=======
->>>>>>> Stashed changes
-        <li class="nav-item">
-            <a class="nav-link" href="/karyawan">
-                <i class="menu-icon mdi mdi-badge-account-horizontal-outline"></i>
-                <span class="menu-title">Karyawan</span>
-            </a>
-        </li>
-        <li class="nav-item">
-<<<<<<< Updated upstream
-=======
-            <a class="nav-link" href="/upah">
-                <i class="menu-icon mdi  mdi-currency-usd"></i>
-                <span class="menu-title">Upah Karyawan</span>
-            </a>
-        </li>
-        <li class="nav-item">
->>>>>>> Stashed changes
-            <a class="nav-link" href="/kendaraan">
-                <i class="menu-icon mdi mdi-car-child-seat"></i>
-                <span class="menu-title">Jenis Kendaraan</span>
-            </a>
-        </li>
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         <li class="nav-item">
             <a class="nav-link" href="/parkir/masuk">
                 <i class="menu-icon mdi mdi-crop-free"></i>
