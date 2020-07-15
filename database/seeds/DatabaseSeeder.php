@@ -13,5 +13,15 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(KaryawanSeeder::class);
         $this->call(JenisKendaraanSeeder::class);
+
+        $parkir = factory('App\Parkir', 212)->create()->each(function($parkir){
+            if ($parkir->status) {
+                $parkir->transaksi()->save(
+                    factory('App\Transaksi')->make([
+                        'parkir_id'     => $parkir->id
+                    ])
+                );
+            }
+        });
     }
 }
