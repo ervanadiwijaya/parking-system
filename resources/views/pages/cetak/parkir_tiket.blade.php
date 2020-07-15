@@ -94,7 +94,7 @@
                     <p style="text-align: center; font-size: 18pt">{{$data->kode_parkir}}</p>
                     <div style="line-height: 1; margin-top:0.5em;">
                         <p style="text-align: center; font-size: 20pt"><b>{{date('d-m-Y', strtotime($data->created_at))}}</b></p>
-                        <p style="text-align: center; font-size: 35pt"><b>{{date('H:s:t', strtotime($data->created_at))}}</b></p>
+                        <p style="text-align: center; font-size: 35pt"><b>{{date('H:i:s', strtotime($data->created_at))}}</b></p>
                     </div>
 
                     <p style="font-size: 11pt; text-align:center;margin-top:0.5em">Terima Kasih atas kunjungan anda!</p>
@@ -112,10 +112,14 @@
             document.body.id = 'print_area';
             document.getElementById('print_area').style.width = "100%"
             document.body.innerHTML = area;
-            window.print()
-            document.body.id = "";
-            document.body.style.backgroundColor = "#e0e0e0";
-            document.body.innerHTML = temp;
+            setTimeout(() => {
+                window.print()
+                setTimeout(() => {
+                    document.body.id = "";
+                    document.body.style.backgroundColor = "#e0e0e0";
+                    document.body.innerHTML = temp;
+                }, 100)
+            }, 100)
         }
         _print_label()
     </script>
