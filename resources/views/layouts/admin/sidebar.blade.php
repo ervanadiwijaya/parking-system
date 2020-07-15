@@ -25,18 +25,27 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/karyawan">
-                <i class="menu-icon mdi mdi-badge-account-horizontal-outline"></i>
-                <span class="menu-title">Karyawan</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/kendaraan">
-                <i class="menu-icon mdi mdi-car-child-seat"></i>
-                <span class="menu-title">Jenis Kendaraan</span>
-            </a>
-        </li>
+        @if (Auth::user()->role == 'admin')    
+            <li class="nav-item">
+                <a class="nav-link" href="/karyawan">
+                    <i class="menu-icon mdi mdi-badge-account-horizontal-outline"></i>
+                    <span class="menu-title">Karyawan</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/kendaraan">
+                    <i class="menu-icon mdi mdi-car-child-seat"></i>
+                    <span class="menu-title">Jenis Kendaraan</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/laporan">
+                    <i class="menu-icon mdi mdi-elevation-rise"></i>
+                    <span class="menu-title">Laporan</span>
+                </a>
+            </li>
+        @endif
+
         <li class="nav-item">
             <a class="nav-link" href="/parkir/masuk">
                 <i class="menu-icon mdi mdi-crop-free"></i>
@@ -47,12 +56,6 @@
             <a class="nav-link" href="/parkir/keluar">
                 <i class="menu-icon mdi mdi-barcode-scan"></i>
                 <span class="menu-title">Parkir Keluar</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/laporan">
-                <i class="menu-icon mdi mdi-elevation-rise"></i>
-                <span class="menu-title">Laporan</span>
             </a>
         </li>
     </ul>

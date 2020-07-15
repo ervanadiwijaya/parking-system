@@ -16,13 +16,16 @@ use Illuminate\Support\Facades\Auth;
 
 Route::middleware('auth')->group(function(){
     Route::get('/', 'HomeController@index')->name('home');
-    Route::resource('karyawan', 'UserController')->except('create', 'edit');
-    Route::resource('kendaraan', 'JenisKendaraanConroller')->except('create', 'edit');
     Route::prefix('parkir')->group(function(){
         Route::resource('masuk', 'ParkirController')->only('index','store');
         Route::resource('keluar', 'TransaksiController')->only('index','store');
     });
-    Route::get('laporan', 'HomeController@index')->name('laporan');
     Route::get('cetak/tiket/{id}', 'CetakController@tiketParkir')->name('cetak.parkir');
+
+    Route::middleware('check.role:admin')->group(function(){
+        Route::resource('karyawan', 'UserController')->except('create', 'edit');
+        Route::resource('kendaraan', 'JenisKendaraanConroller')->except('create', 'edit');
+        Route::get('laporan', 'HomeController@index')->name('laporan');
+    });
 });
 Auth::routes();
