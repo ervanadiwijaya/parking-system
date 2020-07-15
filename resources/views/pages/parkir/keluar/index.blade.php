@@ -80,7 +80,7 @@
                                         @endif
                                     </td>
                                     <td>{{$item->tarif}}</td>
-                                    <td>{{$item->tagihan}}</td>
+                                    <td>Rp {{number_format($item->tagihan, 0,',',',')}}</td>
                                     <td>{{$item->parkir->created_at}}</td>
                                     <td>{{$item->created_at}}</td>
                                 </tr>
