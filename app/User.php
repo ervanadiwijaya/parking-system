@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //constraint
+    public function upah(){
+        return $this->hasOne('App\Upah', 'role', 'role');
+    }
 }

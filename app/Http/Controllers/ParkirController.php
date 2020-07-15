@@ -45,7 +45,7 @@ class ParkirController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_kendaraan'    => 'required',
+            'jenis_kendaraan'       => 'required',
             'no_polisi'             => 'required',
         ]);
 
