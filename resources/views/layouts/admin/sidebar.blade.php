@@ -45,12 +45,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/upah">
-                    <i class="menu-icon mdi  mdi-currency-usd"></i>
-                    <span class="menu-title">Upah Karyawan</span>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/laporan">
                     <i class="menu-icon mdi mdi-elevation-rise"></i>
                     <span class="menu-title">Laporan</span>
