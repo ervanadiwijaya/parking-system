@@ -11,11 +11,7 @@
         <div class="row w-100">
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
-                @if(session()->has('message'))
-                    <div class="alert alert-danger" role="alert">
-                        <p class="mb-0">{{ session()->get('message') }}</p>
-                    </div>
-                @endif
+                @include('layouts.components.messageAlert')
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">

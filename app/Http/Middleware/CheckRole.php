@@ -16,9 +16,9 @@ class CheckRole
     public function handle($request, Closure $next, $role)
     {
         // petugas / admin
-        if (!Auth::user()->role == $role) {
+        if (Auth::user()->role != $role) {
             Auth::logout();
-            return redirect('/login')->with('message', 'Anda tidak punya hak akses');
+            return redirect('/login')->with('error', 'Anda tidak punya hak akses!');
         }
         return $next($request);
     }
