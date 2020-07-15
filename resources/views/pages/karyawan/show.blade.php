@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <button type="submit" name="_method" value="put" class="btn btn-primary">Ubah Data</button>
-                    <button type="submit" name="_method" value="delete" class="btn btn-danger" data-dismiss="modal">Hapus</button>
+                    <button type="submit" name="_method" value="delete" class="btn btn-danger">Hapus</button>
                 </form>
             </div>
         </div>

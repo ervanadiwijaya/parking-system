@@ -13,4 +13,9 @@ class CetakController extends Controller
 
         return view('pages.cetak.parkir_tiket')->with(compact('id', 'data'));
     }
+
+    public function laporanParkir(){
+
+        return view('pages.cetak.parkir_laporan');
+    }
 }
