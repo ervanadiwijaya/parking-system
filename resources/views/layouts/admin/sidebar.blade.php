@@ -33,6 +33,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/upah">
+                    <i class="menu-icon mdi  mdi-currency-usd"></i>
+                    <span class="menu-title">Upah Karyawan</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/kendaraan">
                     <i class="menu-icon mdi mdi-car-child-seat"></i>
                     <span class="menu-title">Jenis Kendaraan</span>
@@ -45,7 +51,6 @@
                 </a>
             </li>
         @endif
-
         <li class="nav-item">
             <a class="nav-link" href="/parkir/masuk">
                 <i class="menu-icon mdi mdi-crop-free"></i>

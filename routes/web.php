@@ -21,8 +21,8 @@ Route::middleware('auth')->group(function(){
         Route::resource('keluar', 'TransaksiController')->only('index','store');
     });
     Route::get('cetak/tiket/{id}', 'CetakController@tiketParkir')->name('cetak.parkir');
-
     Route::middleware('check.role:admin')->group(function(){
+        Route::resource('upah', 'UpahController')->except('create', 'edit');
         Route::resource('karyawan', 'UserController')->except('create', 'edit');
         Route::resource('kendaraan', 'JenisKendaraanConroller')->except('create', 'edit');
         Route::get('laporan', 'HomeController@index')->name('laporan');
