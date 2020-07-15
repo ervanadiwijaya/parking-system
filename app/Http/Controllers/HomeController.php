@@ -44,9 +44,12 @@ class HomeController extends Controller
     
     public function laporanCreate(Request $request){
         $this->validate($request, [
+            '_get'          => 'required',
             'start_date'    => 'required',
             'end_date'      => 'required',
         ]);
+
+        $_get_method = $request->input('_get');
 
         $laporan = Transaksi::with(['parkir.jenis'], ['parkir' => function($q){
             $q->whereDate('created_at', $request->input('start_date')); // start date
@@ -55,6 +58,9 @@ class HomeController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
 
+       if ($_get_method == 'cetak') {
+          return redirect('/cetak/laporan');
+       }
         return view('pages.laporan.index')->with(compact('laporan'));
     }
 }

@@ -23,8 +23,15 @@
                             </div>
                             <div class="col">
                                 <div class="form-group mb-0">
-                                <label>Aksi</label>
-                                <button type="submit" class="btn btn-block btn-primary">Submit</button>
+                                    <label>Aksi</label>
+                                    <div class="row">
+                                        <div class="col">
+                                            <button name="_get" value="submit" type="submit" class="btn btn-block btn-primary">Submit</button>
+                                        </div>
+                                        <div class="col">
+                                            <button name="_get" value="cetak" type="submit" class="btn btn-block btn-success">Cetak</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
