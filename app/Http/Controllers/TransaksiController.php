@@ -15,7 +15,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksi = Transaksi::with('parkir.jenis')->whereDate('created_at', now())->orderBy('created_at')->get();
+        $transaksi = Transaksi::with('parkir.jenis')->whereDate('created_at', now())->orderBy('created_at', 'desc')->get();
         return view('pages.parkir.keluar.index')->with(compact('transaksi'));
     }
 
