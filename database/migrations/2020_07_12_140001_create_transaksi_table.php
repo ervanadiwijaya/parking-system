@@ -15,11 +15,11 @@ class CreateTransaksiTable extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('parkir_id')->contrained('parkir');
+            $table->foreignId('parkir_id')->constrained('parkir');
             $table->unsignedInteger('lama_parkir');
             $table->unsignedInteger('tarif');
             $table->unsignedInteger('tagihan');
-            $table->dateTimeTz('created_at');
+            $table->datetime('created_at');
         });
     }
 
