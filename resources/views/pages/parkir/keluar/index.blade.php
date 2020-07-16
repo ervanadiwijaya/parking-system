@@ -23,7 +23,7 @@
                         <form method="POST" action="{{route('keluar.store')}}">
                             @csrf
                             <div class="form-group">
-                                <label >Kode Parkir</label>
+                                <label>Kode Parkir</label>
                                 <input name="kode_parkir" required type="text" class="form-control text-uppercase" placeholder="Kode Parkir">
                             </div>
                             <button type="submit" class="btn btn-block btn-success">Tambahkan</button>
