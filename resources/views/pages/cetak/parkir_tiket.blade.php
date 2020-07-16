@@ -112,14 +112,12 @@
             document.body.id = 'print_area';
             document.getElementById('print_area').style.width = "100%"
             document.body.innerHTML = area;
-            setTimeout(() => {
-                window.print()
-                setTimeout(() => {
-                    document.body.id = "";
-                    document.body.style.backgroundColor = "#e0e0e0";
-                    document.body.innerHTML = temp;
-                }, 100)
-            }, 100)
+            window.print()
+            window.onafterprint = function(){
+                document.body.id = "";
+                document.body.style.backgroundColor = "#e0e0e0";
+                document.body.innerHTML = temp;
+            }
         }
         _print_label()
     </script>
