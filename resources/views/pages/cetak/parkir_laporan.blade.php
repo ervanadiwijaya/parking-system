@@ -130,9 +130,9 @@
             </tr>
             <script>
                 window.print();
-                setTimeout(() => {
+                window.onafterprint = function(){
                     window.open('/laporan', '_self');
-                }, 1000)
+                }
             </script>
         </tbody>
     </table>
