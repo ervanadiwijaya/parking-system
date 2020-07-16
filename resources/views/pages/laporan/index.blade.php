@@ -9,13 +9,13 @@
                     @csrf
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col">
+                            <div class="col col-lg-3">
                                 <div class="form-group mb-0">
                                     <label>Dari Tanggal</label>
                                     <input required name="start_date" value="{{$start_date}}" type="date" max="{{date('Y-m-d')}}" class="form-control">
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col col-lg-3">
                                 <div class="form-group mb-0">
                                     <label>Sampai Tanggal</label>
                                     <input required name="end_date" value="{{$end_date}}" max="{{date('Y-m-d')}}" type="date" class="form-control">
@@ -30,6 +30,9 @@
                                         </div>
                                         <div class="col">
                                             <button name="_get" value="cetak" type="submit" class="btn btn-block btn-success">Cetak</button>
+                                        </div>
+                                        <div class="col">
+                                            <button name="_get" value="excel" type="submit" class="btn btn-block btn-success">Export Excel</button>
                                         </div>
                                     </div>
                                 </div>
