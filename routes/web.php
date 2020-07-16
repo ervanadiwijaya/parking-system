@@ -20,6 +20,9 @@ Route::middleware('auth')->group(function(){
         Route::resource('masuk', 'ParkirController')->only('index','store');
         Route::resource('keluar', 'TransaksiController')->only('index','store');
     });
+    Route::prefix('chart')->group(function(){
+        route::get('parkir', 'HomeController@chartParkir');
+    });
     Route::get('cetak/tiket/{id}', 'CetakController@tiketParkir')->name('cetak.parkir');
     Route::middleware('check.role:admin')->group(function(){
         Route::resource('upah', 'UpahController')->except('create', 'edit');

@@ -7,6 +7,7 @@ use App\JenisKendaraan;
 use App\Parkir;
 use App\User;
 use App\Transaksi;
+use DB;
 
 class HomeController extends Controller
 {
@@ -68,5 +69,68 @@ class HomeController extends Controller
         return view('pages.cetak.parkir_laporan')->with(compact('laporan', 'start_date', 'end_date'));
        }
         return view('pages.laporan.index')->with(compact('laporan', 'start_date', 'end_date'));
+    }
+
+    public function chartParkir(){
+        $labels = [];
+        $dataset_all = [];
+        $months = [];
+
+        $jenis_list = JenisKendaraan::get();
+
+        $months_list = ['January', 'February', 'March', 'April', 'Mey', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        $color_list = ['red', 'blue', 'yellow', 'orange'];
+        $xc = 0;
+        foreach ($jenis_list as $item) {
+            $dataset = DB::table('parkir')->select(
+                DB::raw('YEAR(created_at) year'), 
+                DB::raw('MONTH(created_at) month'),
+                DB::raw('count(id) as total'),
+            )
+            ->whereYear('created_at', date('Y'))
+            ->where('status', true)
+            ->where('jenis_kendaraan_id', $item->id)
+            ->groupby('month', 'year')
+            ->orderby('month', 'asc')
+            ->get();
+
+            array_push($dataset_all, [
+                'label' => $item->name,
+                'borderColor' => $color_list[$xc] ?? null,
+                'data'  => $dataset
+            ]);
+            $xc++;
+        }
+        
+        $dataset_new_all = [];
+        foreach ($dataset_all as $item) {
+            $dataset_new = [];
+            $i = 0;
+            $j = 0;
+            while(count($dataset_new) != date('m')){
+                if($item['data'][$j]->month == $i +1){
+                    array_push($dataset_new, $item['data'][$j]->total);
+                    if ($j < count($item['data']) -1) {
+                        $j++;
+                    }
+                }else{
+                    array_push($dataset_new, 0);
+                    // array_push($dataset_new, [
+                    //     'year'  => date('Y'),
+                    //     'month' => $i +1,
+                    //     'total' => 0
+                    // ]);
+                }
+                $i++;
+            }
+            $item['data'] = $dataset_new;
+            array_push($dataset_new_all, $item);
+        }
+
+        return response()->json([
+            'labels'    => $months_list,
+            'data'    => $dataset_new_all,
+        ], 200);
     }
 }
