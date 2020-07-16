@@ -12,13 +12,13 @@
                             <div class="col">
                                 <div class="form-group mb-0">
                                     <label>Dari Tanggal</label>
-                                    <input required name="start_date" value="{{date('Y-m-d')}}" type="date" max="{{date('Y-m-d')}}" class="form-control">
+                                    <input required name="start_date" value="{{$start_date}}" type="date" max="{{date('Y-m-d')}}" class="form-control">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group mb-0">
                                     <label>Sampai Tanggal</label>
-                                    <input required name="end_date" value="{{date('Y-m-d')}}" max="{{date('Y-m-d')}}" type="date" class="form-control">
+                                    <input required name="end_date" value="{{$end_date}}" max="{{date('Y-m-d')}}" type="date" class="form-control">
                                 </div>
                             </div>
                             <div class="col">

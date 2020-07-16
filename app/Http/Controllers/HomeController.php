@@ -39,7 +39,10 @@ class HomeController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
 
-        return view('pages.laporan.index')->with(compact('laporan'));
+        $start_date = date('Y-m-d');
+        $end_date = date('Y-m-d');
+
+        return view('pages.laporan.index')->with(compact('laporan', 'start_date', 'end_date'));
     }
     
     public function laporanCreate(Request $request){
@@ -64,6 +67,6 @@ class HomeController extends Controller
        if ($_get_method == 'cetak') {
         return view('pages.cetak.parkir_laporan')->with(compact('laporan', 'start_date', 'end_date'));
        }
-        return view('pages.laporan.index')->with(compact('laporan'));
+        return view('pages.laporan.index')->with(compact('laporan', 'start_date', 'end_date'));
     }
 }
