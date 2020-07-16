@@ -89,7 +89,7 @@
                         <h1>Parking Receipt</h1>
                     </div>
                     <div class="qr">
-                        <?php echo DNS2D::getBarcodeHTML($id, 'QRCODE', 5,5); ?>
+                        <?php echo DNS2D::getBarcodeHTML($data->kode_parkir, 'QRCODE', 5,5); ?>
                     </div>
                     <p style="text-align: center; font-size: 18pt">{{$data->kode_parkir}}</p>
                     <div style="line-height: 1; margin-top:0.5em;">

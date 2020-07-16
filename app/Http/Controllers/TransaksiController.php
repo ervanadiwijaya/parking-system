@@ -35,14 +35,15 @@ class TransaksiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'kode_parkir'     => 'required'
-        ]);
+
+    public function _createTransaksi($kode_parkir){
+        $transaksi = Transaksi::where('parkir_id',substr($kode_parkir, 4))->first();
+        if ($transaksi != null) {
+            return false;
+        }
 
         $keluar_date = strtotime(now());
-        $parkir = Parkir::with('jenis')->findOrfail(substr($request->input('kode_parkir'), 4));
+        $parkir = Parkir::with('jenis')->findOrfail(substr($kode_parkir, 4));
         $masuk_date =strtotime($parkir->created_at);
         
         // data perhitungan waktu dari sini: https://www.geeksforgeeks.org/how-to-calculate-the-difference-between-two-dates-in-php/
@@ -78,6 +79,35 @@ class TransaksiController extends Controller
             'tagihan'       => $tagihan,
             'created_at'    => date('Y-m-d H:i:s', $keluar_date)
         ]);
+
+        return true;
+    }
+
+    public function apiStore(Request $request){
+        $request->validate([
+            'kode_parkir'     => 'required'
+        ]);
+
+        if (!$this->_createTransaksi($request->input('kode_parkir'))) {
+            return response()->json([
+                'message'   => 'Data sudah ada'
+            ], 409);
+        };
+
+        return response()->json([
+            'message'   => 'Data berhasil ditambahkan'
+        ], 201);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'kode_parkir'     => 'required'
+        ]);
+
+        if (!$this->_createTransaksi($request->input('kode_parkir'))) {
+            return back()->with('error', 'Data sudah ada');
+        };
 
         return back()->with('message', 'Data Berhasil ditambahkan');
     }

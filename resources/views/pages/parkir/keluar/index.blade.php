@@ -10,6 +10,15 @@
     </div>
 </div>
 @include('layouts.components.messageAlert')
+<div style="display: none" id="alert_error" class="alert alert-danger" role="alert">
+    <p class="mb-0">Terjadi kesalahaan</p>
+</div>
+<div style="display: none" id="alert_already_exist" class="alert alert-danger" role="alert">
+    <p class="mb-0">Data sudah ada</p>
+</div>
+<div style="display: none" id="alert_success_added" class="alert alert-primary" role="alert">
+    <p class="mb-0">Data berhasil ditambahkan</p>
+</div>
 <div class="row mb-3">
     <div class="col">
         <div class="card">

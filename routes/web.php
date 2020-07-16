@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function(){
     Route::prefix('parkir')->group(function(){
         Route::resource('masuk', 'ParkirController')->only('index','store');
         Route::resource('keluar', 'TransaksiController')->only('index','store');
+        Route::post('keluar/reader', 'TransaksiController@apiStore');
     });
     Route::prefix('chart')->group(function(){
         route::get('parkir', 'HomeController@chartParkir');
