@@ -58,16 +58,14 @@ class HomeController extends Controller
 
         $_get_method = $request->input('_get');
 
-        $laporan = Transaksi::with(['parkir.jenis'], ['parkir' => function($q){
-            $q->whereDate('created_at', $request->input('start_date')); // start date
-        }])
-        ->whereDate('created_at', $request->input('end_date')) // end date
-        ->orderBy('created_at', 'desc')
-        ->get();
-
-       if ($_get_method == 'cetak') {
-        return view('pages.cetak.parkir_laporan')->with(compact('laporan', 'start_date', 'end_date'));
-       }
+        $laporan = Transaksi::with('parkir.jenis')
+        ->whereDate('created_at', '<=', $end_date)
+        ->whereDate('created_at', '>=', $start_date)
+        ->orderBy('created_at', 'desc')->get();
+        
+        if ($_get_method == 'cetak') {
+            return view('pages.cetak.parkir_laporan')->with(compact('laporan', 'start_date', 'end_date'));
+        }
         return view('pages.laporan.index')->with(compact('laporan', 'start_date', 'end_date'));
     }
 
