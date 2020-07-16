@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransaksiExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\JenisKendaraan;
 use App\Parkir;
@@ -61,10 +63,15 @@ class HomeController extends Controller
         $laporan = Transaksi::with('parkir.jenis')
         ->whereDate('created_at', '<=', $end_date)
         ->whereDate('created_at', '>=', $start_date)
-        ->orderBy('created_at', 'desc')->get();
+        ->orderBy('created_at', 'desc')->get()->toArray();
+
+        // return $laporan;
         
         if ($_get_method == 'cetak') {
             return view('pages.cetak.parkir_laporan')->with(compact('laporan', 'start_date', 'end_date'));
+        }elseif($_get_method =='excel'){
+            $excel = new TransaksiExport($laporan);
+            return Excel::download($excel, 'laporan_transaksi_parkir_'.$start_date.'_sd_'.$end_date.'.xlsx');
         }
         return view('pages.laporan.index')->with(compact('laporan', 'start_date', 'end_date'));
     }

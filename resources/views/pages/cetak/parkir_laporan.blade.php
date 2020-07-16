@@ -90,24 +90,24 @@
             @foreach ($laporan as $key => $item)    
             <tr>
                 <?php 
-                    $total_lama += $item->lama_parkir;    
-                    $total_tagihan += $item->tagihan; 
+                    $total_lama += $item['lama_parkir'];    
+                    $total_tagihan += $item['tagihan']; 
                 ?>
                 <td class="center">{{$key +1}}</td>
-                <td>{{$item->parkir->kode_parkir}}</td>
-                <td>{{$item->parkir->no_polisi}}</td>
-                <td>{{$item->parkir->created_at}}</td>
-                <td>{{$item->created_at}}</td>
+                <td>{{$item['parkir']['kode_parkir']}}</td>
+                <td>{{$item['parkir']['no_polisi']}}</td>
+                <td>{{$item['parkir']['created_at']}}</td>
+                <td>{{$item['created_at']}}</td>
                 <td>
-                    @if ($item->lama_parkir >= 60)
-                        {{floor($item->lama_parkir / 60)}} jam, {{($item->lama_parkir % 60)}} menit
+                    @if ($item['lama_parkir'] >= 60)
+                        {{floor($item['lama_parkir'] / 60)}} jam, {{($item['lama_parkir'] % 60)}} menit
                     @else
-                        {{$item->lama_parkir}} menit
+                        {{$item['lama_parkir']}} menit
                     @endif
                 </td>
-                <td>{{$item->tarif}}</td>
-                <td>{{$item->parkir->jenis->name}}</td>
-                <td>Rp {{number_format($item->tagihan, 0,',',',')}}</td>
+                <td>{{$item['tarif']}}</td>
+                <td>{{$item['parkir']['jenis']['name']}}</td>
+                <td>Rp {{number_format($item['tagihan'], 0,',',',')}}</td>
             </tr>
         @endforeach
         </tbody>
