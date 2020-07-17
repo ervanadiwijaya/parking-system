@@ -94373,7 +94373,7 @@ function BarcodeScanner() {
 
         alert.style.display = 'block';
         setTimeout(function () {
-          alert.style.display = 'none';
+          window.location.reload();
         }, 3000);
         readBarcode();
       })["catch"](function (error) {
@@ -94384,7 +94384,7 @@ function BarcodeScanner() {
 
         alert.style.display = 'block';
         setTimeout(function () {
-          alert.style.display = 'none';
+          window.location.reload();
         }, 3000);
         readBarcode();
       });
