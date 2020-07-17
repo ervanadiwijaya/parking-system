@@ -34,7 +34,8 @@ export default function BarcodeScanner() {
                     }
                     alert.style.display = 'block'
                     setTimeout(() => {
-                        window.location.reload()
+                        alert.style.display = 'none'
+                        // window.location.reload()
                     }, 3000)
                     readBarcode()
                 })
