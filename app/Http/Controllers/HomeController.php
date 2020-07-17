@@ -107,6 +107,8 @@ class HomeController extends Controller
             ]);
             $xc++;
         }
+
+        // return $dataset_all;
         
         $dataset_new_all = [];
         foreach ($dataset_all as $item) {
@@ -114,7 +116,7 @@ class HomeController extends Controller
             $i = 0;
             $j = 0;
             while(count($dataset_new) != date('m')){
-                if($item['data'][$j]->month == $i +1){
+                if(count($item['data']) > 0 && $item['data'][$j]->month == $i +1){
                     array_push($dataset_new, $item['data'][$j]->total);
                     if ($j < count($item['data']) -1) {
                         $j++;
@@ -131,6 +133,7 @@ class HomeController extends Controller
             }
             $item['data'] = $dataset_new;
             array_push($dataset_new_all, $item);
+
         }
 
         return response()->json([
