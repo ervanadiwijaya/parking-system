@@ -33,4 +33,4 @@ Route::middleware('auth')->group(function(){
         Route::post('laporan', 'HomeController@laporanCreate')->name('laporan.create');
     });
 });
-Auth::routes();
+Auth::routes(['register' => false]);
