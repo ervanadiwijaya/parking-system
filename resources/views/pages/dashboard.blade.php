@@ -105,7 +105,7 @@
           data: element.data,
           fill: false,
           borderColor: element.borderColor,
-          backgroundColor: false,
+          backgroundColor: element.borderColor,
           borderWidth: 2
         })
       });
