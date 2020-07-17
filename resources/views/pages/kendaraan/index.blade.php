@@ -22,7 +22,15 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tarif / Jam</label>
-                        <input name="tarif" type="number" class="form-control">
+                        <input required name="tarif_perjam" type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tarif 2 Jam Pertama</label>
+                        <input required name="tarif_awal" type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tarif Maksimal</label>
+                        <input required name="tarif_max" type="number" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
