@@ -11,8 +11,7 @@
                 <div class="text-wrapper">
                     <p style="text-transform: capitalize;" class="profile-name">{{{ Auth::user()->name }}}</p>
                     <div>
-                        <small class="designation text-muted">Admin</small>
-                        {{-- <small class="designation text-muted">{{Auth::user()->role[0]->name}}</small> --}}
+                        <small class="designation text-muted text-capitalize">{{Auth::user()->role}}</small>
                         <span class="status-indicator online"></span>
                     </div>
                 </div>
