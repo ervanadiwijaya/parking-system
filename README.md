@@ -15,7 +15,7 @@ Hi, this repo we made for complete a task of the Enterprise Web Development.
 * [**Laravel 7**](https://laravel.com/docs/7.x)
 
 ## 🚀 Quick start
-1. `git clone https://github.com/vnxx/ColaborateBlogTest.git`.
+1. `git clone https://github.com/ervanadiwijaya/parking-system.git`.
 2. Copy .env.example file to .env and edit database credentials there.
 3. Run `composer install`.
 4. Run `php artisan key:generate`.
